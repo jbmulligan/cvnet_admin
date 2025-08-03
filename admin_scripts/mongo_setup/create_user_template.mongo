@@ -1,0 +1,8 @@
+use MONGO_DATABASE
+db.createUser(
+  {
+    user: "MONGO_USER",
+    pwd: "MONGO_PW",
+    roles: [ MONGO_ROLES ]
+  }
+)

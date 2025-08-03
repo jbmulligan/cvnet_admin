@@ -1,0 +1,10 @@
+hub-prod-page	pageServer
+hub-prod-api	apiServer
+hub-dev-page	pageServer
+hub-dev-api	apiServer
+hub-local-page	pageServer
+hub-local-api	apiServer
+hub-test1-page	pageServer
+hub-test1-api	apiServer
+hub-dev-uploads	tusd
+hub-prod-uploads	tusd

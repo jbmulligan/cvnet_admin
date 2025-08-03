@@ -1,0 +1,9 @@
+use admin
+db.createUser(
+  {
+    user: "hubAdminUser",
+    pwd: "p1ugPIKlELrALAZj",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ]
+  }
+)
+

@@ -1,0 +1,9 @@
+
+use hub-prod-db
+db.createUser(
+  {
+    user: "hub",
+    pwd: "85nXQ4yTdGHBkJdG",
+    roles: [ { role: "readWrite", db: "hub-prod-db" } ]
+  }
+)

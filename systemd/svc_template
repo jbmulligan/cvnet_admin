@@ -1,0 +1,36 @@
+# Service installation commands (run as root):
+# ln -s XXX_CWD_XXX/XXX_SVC_NAME_XXX.service /lib/systemd/system
+# systemctl daemon-reload
+# systemctl enable XXX_SVC_NAME_XXX.service
+# systemctl start XXX_SVC_NAME_XXX.service
+
+[Unit]
+Description=XXX_SVC_DESCRIPTION_XXX
+After=network-online.target remote-fs.target nss-lookup.target
+# The page server should be launched AFTER the api server has been launched.
+# Similarly, the api server should be launched AFTER mongodb has been launched.
+After=XXX_PREREQ_SVC_NAME_XXX.service
+
+[Service]
+User=XXX_USERNAME_XXX
+Group=XXX_GROUPNAME_XXX
+NoNewPrivileges=true
+WorkingDirectory=XXX_SERVER_DIR_XXX
+
+Environment=NODE_ENV=XXX_NODE_ENV_XXX
+Environment=PATH=XXX_NODE_BIN_XXX:XXX_SPHINX_BIN_XXX:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+Environment=LOGS=XXX_LOG_DIR_XXX
+
+# needed by the app
+Environment=CVNET_ADMIN_DIR=XXX_CVNET_ADMIN_DIR_XXX
+
+ExecStartPre=sleep 3
+# The arg passed to page-server.js is not used, but we put it there
+# to help us distinguish the different processes when listed with ps
+ExecStart=sh -c "exec forever --spinSleepTime 5000 XXX_APP_JS_XXX XXX_SVC_NAME_XXX >>XXX_LOG_DIR_XXX/out.log 2>>XXX_LOG_DIR_XXX/err.log"
+Restart=on-failure
+RestartSec=10s
+TimeoutStartSec=300
+
+[Install]
+WantedBy=multi-user.target

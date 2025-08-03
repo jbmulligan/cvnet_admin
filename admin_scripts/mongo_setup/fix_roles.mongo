@@ -1,0 +1,4 @@
+use admin
+db.system.users.updateOne({_id:"admin.myUserAdmin"},{$set:{roles:[{role:"userAdminAnyDatabase",db:"admin"},{role:"readWriteAnyDatabase",db:"admin"},{role:"restore",db:"pumpkin"}]}})
+
+

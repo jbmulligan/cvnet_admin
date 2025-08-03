@@ -1,0 +1,16 @@
+The certificates need to be created BEFORE the https section
+is put into the config file for a new server...  Easiest to:
+
+1. copy a new file from an old one
+2. temporarily comment out the https section
+3. Change all occurrences of the old host name to the new one.
+4. Change the port number for the upstream service.
+5. Create a link to the new file in /etc/nginx/conf.d (use link_file.sh)
+6. Restart nginx:
+	service nginx status
+	sudo service nginx restart
+7. Install certbot
+8. Create certificate
+	certbot certonly --standalone
+	NOW WE USE WEBROOT!  FIXME
+

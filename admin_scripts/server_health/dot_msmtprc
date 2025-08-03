@@ -1,0 +1,17 @@
+#Gmail account
+defaults
+#change the location of the log file to any desired location.
+logfile ~/msmtp.log
+account gmail
+auth on
+host smtp.gmail.com
+from tellab.manager@gmail.com
+auth on
+tls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+user tellab.manager@gmail.com
+password 1L0v3T311a8
+port 587
+#set gmail as your default mail server.
+account default : gmail
+

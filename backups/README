@@ -1,0 +1,13 @@
+OLD README FILE from tellab_admin repo:
+
+Jeff created this directory on 10/20/2023, when trying to clone
+a database for lab2-test4.  I found the script backup.sh in /usr/local/bin
+on lab2, but it doesn't seem to be in the repo?
+
+The backup script is triggered by crontab.  On lab2, it is currently done
+under the isavine account, and this is the crontab entry:
+
+MAILTO=igor.savine@berkeley.edu
+40 * * * * /usr/local/bin/backup.sh -h 24 >/dev/null 2>&1
+
+

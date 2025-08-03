@@ -1,3 +1,4 @@
-# cvnet_admin
+# cvnet\_admin
 
-This repository contains configuration data and secrets for the cvnet hub web server
+This repository contains things that should never be made public,
+such as database passwords, and other security-sensitive data.

@@ -1,0 +1,4 @@
+use pumpkin
+db.user.find({username:'jbmull@gmail.com'});
+db.user.update({username:'jbmull@gmail.com'},{$set: {role:'admin'}});
+db.user.find({username:'jbmull@gmail.com'});

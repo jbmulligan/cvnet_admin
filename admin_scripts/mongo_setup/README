@@ -1,0 +1,82 @@
+NOTE:  The files in this directory contain security-sensitive information.
+The passwords in the mongo shell files ARE the current passwords, and
+so this repo should never be shared or made public!  For instructional purposes,
+the commands may be documented in a public repo, but only after
+scrubbing all passwords...
+
+OLD NOTE:  In order to have a unified source of the password information,
+the create user scripts are now created by create_user_creation_script.sh.
+The old creation scripts (e.g. createTellabUser.mongo.aws-db) can be removed
+from the repo...
+
+---------------------------------------------------------
+
+Set up mongod for authentication, so any old person can't connect
+to our database.
+See: https://www.mongodb.com/docs/manual/administration/security-checklist/
+
+IMPORTANT NOTE:  DO NOT INCLUDE AT-SIGN ("@") IN ANY PASSWORDS!!!
+
+Here is a command to generate a random password:
+pwgen -s -N 1 16
+
+Steps:
+
+1) Add user admin (before enabling authentication!)
+	Note that createUserAdmin.mongo defines the admin user password
+	and username; these will be needed for any client aliases to
+	connect to the database!  This file must be edited before use.
+
+	% mongosh < createUserAdmin.mongo
+
+4) Shut down mongo server
+        % sudo systemctl stop mongod
+
+5) Enable security:
+	Add these lines to /etc/mongod.conf:
+
+security:
+    authorization: enabled
+
+        Restart service
+        % sudo systemctl start mongod
+
+6) Test
+        % mongosh --authenticationDatabase "admin" --username=<userAdminUsername> --password=<userAdminPw>
+        mongo> show databases
+        mongo> exit
+
+7) At this point, it may be useful to alias the test command to mongo_admin...
+
+8) Create an application user
+	
+	% mongo_admin < createAppUser.mongo
+
+9) Test:
+
+% mongosh --authenticationDatabase <myAppDb> --username=:<myAppUsername> --password=<myAppPw> <myAppDb>
+
+
+
+OLD:
+
+
+How to change the admin user password:
+
+1) connect to the host with the mongo shell:
+
+% mongo --host dev-db.tellab.org --username=myUserAdmin --password=adminPW4tellabDB admin
+
+2) change the admin password:
+
+> db.changeUserPassword("myUserAdmin","theNewPassword")
+
+How to change the tellab user password:
+
+
+------------------------------------
+
+The command in make_admin.mongo makes a user a tellab administrator (not a database admin)
+
+-------------------------------------
+
