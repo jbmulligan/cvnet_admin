@@ -11,6 +11,4 @@ is put into the config file for a new server...  Easiest to:
 	sudo service nginx restart
 7. Install certbot
 8. Create certificate
-	certbot certonly --standalone
-	NOW WE USE WEBROOT!  FIXME
-
+	sudo certbot certonly --webroot -w /usr/share/nginx/html -d <hostname>

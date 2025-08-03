@@ -6,9 +6,9 @@ if [[ $# -ne 1 ]]; then
 fi
 
 if [[ $1 == "domain" ]]; then
-	hn=tellab.org
+	hn=cvnet.org
 else
-	hn=$1.tellab.org
+	hn=$1.cvnet.org
 fi
 
 filename=$hn.conf
